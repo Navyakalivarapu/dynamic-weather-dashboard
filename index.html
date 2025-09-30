@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Weather Dashboard</h1>
+        <p class="tagline">
+          Real-time weather, forecasts, and lifestyle advice.
+        </p>
+        <div class="city-input-area">
+          <input type="text" id="city-input" placeholder="Enter a City Name" />
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab-link" data-tab="search">🔍 Search</button>
+        <button class="tab-link" data-tab="location">
+          🌍 Use Current Location
+        </button>
+        <button class="tab-link" data-tab="clothing">
+          👕 Clothing Suggestion
+        </button>
+        <button class="tab-link" data-tab="aqi">🌫️ Air Quality (AQI)</button>
+      </nav>
+      <div class="map-tab-container">
+        <button class="tab-link" data-tab="map">🗺️ Weather Map</button>
+      </div>
+
+      <main id="content-area">
+        <div id="search-content" class="tab-content active">
+          <div class="weather-info-container"></div>
+          <div class="forecast-container"></div>
+        </div>
+
+        <div id="clothing-content" class="tab-content"></div>
+
+        <div id="aqi-content" class="tab-content"></div>
+
+        <div id="map-content" class="tab-content">
+          <div id="map"></div>
+        </div>
+      </main>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
