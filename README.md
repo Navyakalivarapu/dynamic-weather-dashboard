@@ -1,5 +1,5 @@
 ## 🌦️ Dynamic Weather Dashboard
-{**View  Live Demo**]( https://navyakalivarapu.github.io/dynamic-weather-dashboard/)
+[**View  Live Demo**]( https://navyakalivarapu.github.io/dynamic-weather-dashboard/)
 
 A user-friendly and visually appealing web application that provides real-time weather information. This dashboard fetches and displays current weather data, a 5-day forecast, and lifestyle suggestions based on user location or a searched city, all within a simple, modern interface.
 
