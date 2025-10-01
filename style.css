@@ -52,6 +52,10 @@ header h1 {
     color: #000000; 
     text-shadow: none;
 }
+.city-input-area {
+    display: flex;
+    justify-content: center;
+}
 
 .city-input-area input {
     width: 100%;
@@ -146,9 +150,9 @@ header h1 {
 
 .current-weather-card h2 {
     margin-top: 0;
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    word-break: break-all; 
 }
-
 .current-weather-card .temp {
     font-size: 3.5rem;
     font-weight: 600;

@@ -177,39 +177,45 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    function displayClothingSuggestions() {
-        if (!currentWeatherData) {
-            clothingContent.innerHTML = `<h2>Please search for a city first to get suggestions.</h2>`;
-            showContent('clothing-content');
-            return;
-        }
-        
-        const { weather } = currentWeatherData.weather;
-        const temp = Math.round(currentWeatherData.weather.main.temp);
-        const condition = weather[0].main;
-        let suggestion = "";
-
-        if (condition === "Rain" || condition === "Drizzle") {
-            suggestion += "<p>It's raining! 🌧️ Don't forget an umbrella and a raincoat.</p>";
-        }
-        if (condition === "Snow") {
-            suggestion += "<p>It's snowing! ❄️ Wear a heavy coat, gloves, and a hat.</p>";
-        }
-
-        if (temp > 25) {
-            suggestion += "<p>It's warm! A t-shirt and shorts are perfect. Stay hydrated! 💧</p>";
-        } else if (temp >= 15 && temp <= 25) {
-            suggestion += "<p>The weather is mild. A light sweater or jacket will be comfortable. 👍</p>";
-        } else {
-            suggestion += "<p>It's cold! Wear a warm jacket or coat. 🧥</p>";
-        }
-
-        clothingContent.innerHTML = `
-            <h2>Today's Clothing Suggestion for ${currentWeatherData.weather.name}</h2>
-            <div>${suggestion}</div>
-        `;
+   function displayClothingSuggestions() {
+    if (!currentWeatherData) {
+        clothingContent.innerHTML = `<h2>Please search for a city first to get suggestions.</h2>`;
         showContent('clothing-content');
+        return;
     }
+    
+    const temp = Math.round(currentWeatherData.weather.main.temp);
+    const condition = currentWeatherData.weather.weather[0].main;
+    
+    let suggestion = "";
+
+    // --- FINAL LOGIC: Single, cohesive suggestions for each weather type ---
+
+    if (condition === "Rain" || condition === "Drizzle" || condition === "Thunderstorm") {
+        if (temp > 20) { // Warm Rain
+            suggestion = "<p>A light waterproof jacket over a t-shirt is a good choice. Don't forget an umbrella! 🌧️</p>";
+        } else { // Cool Rain
+            suggestion = "<p>A waterproof jacket over a warm sweater is recommended. 🌧️</p>";
+        }
+    } else if (condition === "Snow") {
+        suggestion = "<p>It's snowing! A heavy, waterproof coat, warm layers, and gloves are essential. ❄️</p>";
+    } else {
+        // --- Dry Day Logic ---
+        if (temp >= 28) {
+            suggestion = "<p>It's a warm and dry day! A t-shirt and shorts are perfect. 💧</p>";
+        } else if (temp >= 18 && temp < 28) {
+            suggestion = "<p>The weather is mild and pleasant. Long sleeves or a light jacket will be comfortable. 👍</p>";
+        } else { // temp < 18
+            suggestion = "<p>It's a cool and dry day! A warm jacket or sweater is recommended. 🧥</p>";
+        }
+    }
+
+    clothingContent.innerHTML = `
+        <h2>Today's Clothing Suggestion for ${currentWeatherData.weather.name}</h2>
+        <div>${suggestion}</div>
+    `;
+    showContent('clothing-content');
+}
 
     function displayAqiInfo() {
         if (!currentWeatherData) {
