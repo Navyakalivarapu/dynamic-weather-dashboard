@@ -81,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${API_KEY}`, {
             attribution: '&copy; <a href="https://openweathermap.org/">OpenWeatherMap</a>'
         }).addTo(map);
-        
+          L.Control.geocoder().addTo(map);
+
         // Map click event
         map.on('click', (e) => {
             const { lat, lng } = e.latlng;
@@ -104,8 +105,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const { lat, lon } = data.coord;
             fetchAllData(lat, lon, data.name);
         } catch (error) {
-            alert(error.message);
-        }
+    console.error(error); 
+    const infoContainer = searchContent.querySelector('.weather-info-container');
+    const forecastContainer = searchContent.querySelector('.forecast-container');
+    infoContainer.innerHTML = `
+        <div class="error-message">
+            <h3>Location Not Found</h3>
+            <p>Sorry, we couldn't find "${city}". Please check the spelling or try a nearby larger town.</p>
+            
+            <p>For pinpoint accuracy, try the <strong>Weather Map</strong> tab. You can <strong>use its search bar</strong> or click directly on any spot.</p>
+        </div>
+    `;
+    forecastContainer.innerHTML = ""; 
+    showContent('search-content');
+}
     }
     
     function fetchWeatherByLocation() {
@@ -153,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         infoContainer.innerHTML = `
             <div class="current-weather-card">
                 <h2>${weather.name}, ${weather.sys.country}</h2>
+                <p class="station-info">Displaying data from the nearest weather station</p>
                 <div class="temp">${Math.round(weather.main.temp)}°C</div>
                 <img src="https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}">
                 <p style="text-transform: capitalize;">${weather.weather[0].description}</p>

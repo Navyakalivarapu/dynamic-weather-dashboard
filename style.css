@@ -199,3 +199,17 @@ header h1 {
     color: #000000; 
     font-weight: 500;
 }
+.error-message {
+    background: rgba(255, 235, 238, 0.3); 
+    color: #000000; 
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #c62828;
+    text-align: center;
+}
+.station-info {
+    font-size: 0.8rem;
+    color: #666; 
+    margin-top: -15px; 
+    margin-bottom: 10px;
+}
