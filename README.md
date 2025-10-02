@@ -19,7 +19,7 @@ This project was built to address the need for a simple, all-in-one weather inte
 
 **Air Quality Index (AQI):** View the current AQI level (from Good to Hazardous) with corresponding health advice for the general population and sensitive groups.
 
-**Interactive Weather Map:** Explore a world map with a weather overlay and get weather data by clicking on any location.
+**Interactive Weather Map:** Search for any location to find it instantly, explore a world map with a weather overlay, and get weather data by clicking anywhere.
 
 ## Technologies Used
 HTML5
@@ -33,6 +33,8 @@ OpenWeatherMap API (for weather, forecast, and AQI data)
 Browser Geolocation API
 
 Leaflet.js (for the interactive map)
+
+Leaflet Control Geocoder (A plugin for Leaflet that adds the search bar functionality to the map)
 
 ## Created By
 This project was created by Navya.
